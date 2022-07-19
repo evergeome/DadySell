@@ -45,6 +45,6 @@
     run this code [ php artisan make:middleware CheckRole ] to build Middleware Controller
     Add your middleware into Kernal.php
 
-## Thank you
+## Thanks
 
 Done by Karim Ibrahim @2022
