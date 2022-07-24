@@ -10,7 +10,7 @@ use App\Http\Controllers\SocialController as Social;
 use App\Http\Controllers\OfferController as Offer;
 use App\Http\Controllers\ProductController as Product;
 use App\Http\Controllers\YoutubeController as Youtube;
-
+use App\Http\Controllers\RelationController as Relation;
 
 Auth::routes(['verify' => true]);
 
@@ -50,6 +50,11 @@ Route::group([
 
     Route::controller(Youtube::class)->group(function () {
         Route::get('youtube', 'youtube');
+    });
+
+    Route::controller(Relation::class)->group(function () {
+        Route::get('has-one', 'hasOne');
+        Route::get('has-one-reverse', 'hasOneReverse');
     });
 
     // Route Resource

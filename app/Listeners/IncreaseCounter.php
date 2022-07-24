@@ -26,13 +26,18 @@ class IncreaseCounter
      */
     public function handle(VideoViewer $event)
     {
-        $this->update($event->video);
+        if (!session()->has('offer')) {
+            $this->update($event->video);
+        } else {
+            return false;
+        }
     }
 
     public function update($video)
     {
-        $views = $video::find(1);
+        $views = $video::first();
         $views->price = $views->price + 1;
         $views->save();
+        session()->put('offer', $video->id);
     }
 }

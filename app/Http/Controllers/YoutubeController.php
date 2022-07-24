@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class YoutubeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function youtube()
     {
         $views = Youtube::first();
