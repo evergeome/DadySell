@@ -28,4 +28,16 @@ class RelationController extends Controller
         $phone->makeHidden(['id']);
         return response()->json($phone);
     }
+
+    public function hasPhone()
+    {
+        return $user = User::whereHas('phoneNumber', function ($q) {
+            $q->where('code', '002');
+        })->get();
+    }
+
+    public function NothasPhone()
+    {
+        return $user = User::whereDoesntHave('phoneNumber')->get();
+    }
 }

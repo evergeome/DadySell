@@ -55,6 +55,8 @@ Route::group([
     Route::controller(Relation::class)->group(function () {
         Route::get('has-one', 'hasOne');
         Route::get('has-one-reverse', 'hasOneReverse');
+        Route::get('has-phone', 'hasPhone');
+        Route::get('not-has-phone', 'notHasPhone');
     });
 
     // Route Resource
