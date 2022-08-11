@@ -56,7 +56,8 @@ Route::group([
         Route::get('has-one', 'hasOne');
         Route::get('has-one-reverse', 'hasOneReverse');
         Route::get('has-phone', 'hasPhone');
-        Route::get('not-has-phone', 'notHasPhone');
+        Route::get('not-have-phone', 'notHavePhone');
+        Route::get('has-many', 'hasMany');
     });
 
     // Route Resource

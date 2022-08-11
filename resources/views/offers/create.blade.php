@@ -17,30 +17,30 @@
             <div class="form-group pt-3">
                 <label for="photo">Offer photo</label>
                 <input type="file" class="form-control" id="photo" name="photo" value="{{ old('photo') }}" placeholder="Offer photo">
-                @error('photo')
-                <small class="form-text text-danger">{{$message}}</small>
-                @enderror
+                
+                <small id="photo_error" class="form-text text-danger"></small>
+
             </div>
             <div class="form-group pt-3">
                 <label for="name">Offer Name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" placeholder="Offer Name">
-                @error('name')
-                <small class="form-text text-danger">{{$message}}</small>
-                @enderror
+
+                <small id="name_error" class="form-text text-danger"></small>
+
             </div>
             <div class="form-group pt-3">
                 <label for="price">Offer Price</label>
                 <input type="number" step=".001" class="form-control" id="price" name="price" value="{{ old('price') }}" placeholder="Offer Price">
-                @error('price')
-                <small class="form-text text-danger">{{$message}}</small>
-                @enderror
+
+                <small id="price_error" class="form-text text-danger"></small>
+
             </div>
             <div class="form-group pt-3">
                 <label for="description">Offer Description</label>
                 <input type="text" class="form-control" id="description" name="description" value="{{ old('description') }}" placeholder="Offer Description">
-                @error('description')
-                <small class="form-text text-danger">{{$message}}</small>
-                @enderror
+                
+                <small id="description_error" class="form-text text-danger"></small>
+
             </div>
             <button type="button" id="save_offer" class="btn btn-primary btn-block my-5" style="width:100%">Submit</button>
         </form>
@@ -69,7 +69,14 @@
                     form.reset();
                 alert(data.msg);
             },
-            error: function(reject) {}
+            error: function(reject) {
+
+                let response = $.parseJSON(reject.responseText);
+                $.each(response.errors,function(key, val){
+                    $('#'+key+'_error').text(val[0]);
+                });
+
+            }
         });
     });
 </script>

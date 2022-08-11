@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -48,5 +49,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function phoneNumber()
     {
         return $this->hasOne('App\Models\PhoneNumber');
+    }
+
+    public function store()
+    {
+        return $this->hasMany('App\Models\Store');
     }
 }

@@ -13,9 +13,7 @@ class RelationController extends Controller
         $user = User::with(['phoneNumber' => function ($q) {
             $q->select('code', 'phone', 'user_id');
         }])->find(1);
-
         //return $user->phoneNumber;
-
         return response()->json($user);
     }
 
@@ -31,13 +29,20 @@ class RelationController extends Controller
 
     public function hasPhone()
     {
-        return $user = User::whereHas('phoneNumber', function ($q) {
+        return $user = User::with('phoneNumber')->whereHas('phoneNumber', function ($q) {
             $q->where('code', '002');
         })->get();
     }
 
-    public function NothasPhone()
+    public function NothavePhone()
     {
         return $user = User::whereDoesntHave('phoneNumber')->get();
+    }
+
+    public function hasMany()
+    {
+        $user = User::with('store')->find(1);
+        //return $user->phoneNumber;
+        return response()->json($user);
     }
 }
